@@ -3,120 +3,341 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portfolio CMS</title>
+    <title>PortfolioCMS - Professional Portfolio Builder</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
-    <div class="app">
+    <div class="cms-container">
         <!-- Sidebar -->
         <aside class="sidebar">
             <div class="logo">
                 <i class="fas fa-briefcase"></i>
-                <h2>Portfolio CMS</h2>
+                <h2>PortfolioCMS</h2>
             </div>
-            <nav class="nav">
-                <a href="#" class="nav-link active" data-section="dashboard">
-                    <i class="fas fa-home"></i> Dashboard
-                </a>
-                <a href="#" class="nav-link" data-section="projects">
-                    <i class="fas fa-folder"></i> Projects
-                </a>
-                <a href="#" class="nav-link" data-section="blog">
-                    <i class="fas fa-blog"></i> Blog Posts
-                </a>
-                <a href="#" class="nav-link" data-section="settings">
-                    <i class="fas fa-cog"></i> Settings
-                </a>
+            
+            <nav class="nav-menu">
+                <button class="nav-item active" data-section="dashboard" onclick="showSection('dashboard')">
+                    <i class="fas fa-th-large"></i>
+                    <span>Dashboard</span>
+                </button>
+                <button class="nav-item" data-section="projects" onclick="showSection('projects')">
+                    <i class="fas fa-folder-open"></i>
+                    <span>Projects</span>
+                    <span class="badge" id="projectCount">0</span>
+                </button>
+                <button class="nav-item" data-section="skills" onclick="showSection('skills')">
+                    <i class="fas fa-code"></i>
+                    <span>Skills</span>
+                    <span class="badge" id="skillCount">0</span>
+                </button>
+                <button class="nav-item" data-section="experience" onclick="showSection('experience')">
+                    <i class="fas fa-briefcase"></i>
+                    <span>Experience</span>
+                    <span class="badge" id="expCount">0</span>
+                </button>
+                <button class="nav-item" data-section="education" onclick="showSection('education')">
+                    <i class="fas fa-graduation-cap"></i>
+                    <span>Education</span>
+                    <span class="badge" id="eduCount">0</span>
+                </button>
+                <button class="nav-item" data-section="preview" onclick="showSection('preview')">
+                    <i class="fas fa-eye"></i>
+                    <span>Preview</span>
+                </button>
             </nav>
+            
+            <div class="sidebar-footer">
+                <button class="export-btn" onclick="exportPortfolio()">
+                    <i class="fas fa-download"></i>
+                    Export Portfolio
+                </button>
+                <div class="user-profile">
+                    <div class="avatar">MS</div>
+                    <div class="user-info">
+                        <strong>Mahesh Suryawanshi</strong>
+                        <span>fresher Developer</span>
+                    </div>
+                </div>
+            </div>
         </aside>
 
         <!-- Main Content -->
         <main class="main-content">
-            <header class="top-bar">
-                <h1 id="pageTitle">Dashboard</h1>
-                <div class="user">
-                    <span>Mahesh Suryawanshi</span>
-                    <div class="avatar">MS</div>
-                </div>
-            </header>
-
             <!-- Dashboard Section -->
             <section id="dashboard" class="content-section active">
+                <div class="section-header">
+                    <h1><i class="fas fa-th-large"></i> Dashboard</h1>
+                    <div class="header-actions">
+                        <button class="btn btn-secondary" onclick="loadSampleData()">
+                            <i class="fas fa-magic"></i> Load Sample Data
+                        </button>
+                        <button class="btn btn-primary" onclick="clearAllData()">
+                            <i class="fas fa-trash"></i> Clear All
+                        </button>
+                    </div>
+                </div>
+
                 <div class="stats-grid">
-                    <div class="stat-card">
-                        <i class="fas fa-folder"></i>
-                        <div>
-                            <h3>12</h3>
+                    <div class="stat-card blue">
+                        <div class="stat-icon"><i class="fas fa-folder-open"></i></div>
+                        <div class="stat-details">
+                            <h3 id="dashProjectCount">0</h3>
                             <p>Projects</p>
                         </div>
                     </div>
-                    <div class="stat-card">
-                        <i class="fas fa-blog"></i>
-                        <div>
-                            <h3>24</h3>
-                            <p>Blog Posts</p>
+                    <div class="stat-card green">
+                        <div class="stat-icon"><i class="fas fa-code"></i></div>
+                        <div class="stat-details">
+                            <h3 id="dashSkillCount">0</h3>
+                            <p>Skills</p>
                         </div>
                     </div>
-                    <div class="stat-card">
-                        <i class="fas fa-eye"></i>
-                        <div>
-                            <h3>1.5K</h3>
-                            <p>Total Views</p>
+                    <div class="stat-card orange">
+                        <div class="stat-icon"><i class="fas fa-briefcase"></i></div>
+                        <div class="stat-details">
+                            <h3 id="dashExpCount">0</h3>
+                            <p>Experience</p>
                         </div>
                     </div>
-                    <div class="stat-card">
-                        <i class="fas fa-heart"></i>
-                        <div>
-                            <h3>348</h3>
-                            <p>Likes</p>
+                    <div class="stat-card purple">
+                        <div class="stat-icon"><i class="fas fa-graduation-cap"></i></div>
+                        <div class="stat-details">
+                            <h3 id="dashEduCount">0</h3>
+                            <p>Education</p>
                         </div>
                     </div>
                 </div>
+
                 <div class="recent-activity">
-                    <h2>Recent Activity</h2>
-                    <div class="activity-list" id="activityList"></div>
+                    <h2><i class="fas fa-clock"></i> Recent Activity</h2>
+                    <div class="activity-list" id="activityList">
+                        <div class="empty-state">
+                            <i class="fas fa-inbox"></i>
+                            <p>No recent activity</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="quick-actions">
+                    <h2><i class="fas fa-bolt"></i> Quick Actions</h2>
+                    <div class="action-grid">
+                        <button class="action-card" onclick="showSection('projects'); document.getElementById('addProjectBtn').click()">
+                            <i class="fas fa-plus-circle"></i>
+                            <span>Add New Project</span>
+                        </button>
+                        <button class="action-card" onclick="showSection('skills'); document.getElementById('addSkillBtn').click()">
+                            <i class="fas fa-plus-circle"></i>
+                            <span>Add New Skill</span>
+                        </button>
+                        <button class="action-card" onclick="showSection('preview')">
+                            <i class="fas fa-eye"></i>
+                            <span>Preview Portfolio</span>
+                        </button>
+                        <button class="action-card" onclick="exportPortfolio()">
+                            <i class="fas fa-download"></i>
+                            <span>Export Data</span>
+                        </button>
+                    </div>
                 </div>
             </section>
 
             <!-- Projects Section -->
             <section id="projects" class="content-section">
-                <button class="btn btn-primary" onclick="showAddProjectModal()">
-                    <i class="fas fa-plus"></i> Add New Project
-                </button>
-                <div class="projects-grid" id="projectsGrid"></div>
+                <div class="section-header">
+                    <h1><i class="fas fa-folder-open"></i> Projects</h1>
+                    <button class="btn btn-primary" id="addProjectBtn" onclick="openProjectModal()">
+                        <i class="fas fa-plus"></i> Add Project
+                    </button>
+                </div>
+
+                <div class="search-filter">
+                    <div class="search-box">
+                        <i class="fas fa-search"></i>
+                        <input type="text" id="projectSearch" placeholder="Search projects..." oninput="filterProjects()">
+                    </div>
+                    <select id="projectFilter" onchange="filterProjects()">
+                        <option value="all">All Categories</option>
+                        <option value="web">Web Development</option>
+                        <option value="mobile">Mobile App</option>
+                        <option value="desktop">Desktop App</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+
+                <div class="items-grid" id="projectsGrid">
+                    <div class="empty-state">
+                        <i class="fas fa-folder-plus"></i>
+                        <p>No projects yet. Add your first project!</p>
+                    </div>
+                </div>
             </section>
 
-            <!-- Blog Section -->
-            <section id="blog" class="content-section">
-                <button class="btn btn-primary" onclick="showAddBlogModal()">
-                    <i class="fas fa-plus"></i> Create Blog Post
-                </button>
-                <div class="blog-list" id="blogList"></div>
+            <!-- Skills Section -->
+            <section id="skills" class="content-section">
+                <div class="section-header">
+                    <h1><i class="fas fa-code"></i> Skills</h1>
+                    <button class="btn btn-primary" id="addSkillBtn" onclick="openSkillModal()">
+                        <i class="fas fa-plus"></i> Add Skill
+                    </button>
+                </div>
+
+                <div class="search-filter">
+                    <div class="search-box">
+                        <i class="fas fa-search"></i>
+                        <input type="text" id="skillSearch" placeholder="Search skills..." oninput="filterSkills()">
+                    </div>
+                    <select id="skillFilter" onchange="filterSkills()">
+                        <option value="all">All Types</option>
+                        <option value="frontend">Frontend</option>
+                        <option value="backend">Backend</option>
+                        <option value="database">Database</option>
+                        <option value="tools">Tools</option>
+                    </select>
+                </div>
+
+                <div class="skills-grid" id="skillsGrid">
+                    <div class="empty-state">
+                        <i class="fas fa-code"></i>
+                        <p>No skills yet. Add your first skill!</p>
+                    </div>
+                </div>
             </section>
 
-            <!-- Settings Section -->
-            <section id="settings" class="content-section">
-                <div class="settings-card">
-                    <h2>Profile Settings</h2>
-                    <form id="settingsForm">
-                        <div class="form-group">
-                            <label>Full Name</label>
-                            <input type="text" value="Mahesh Suryawanshi">
-                        </div>
-                        <div class="form-group">
-                            <label>Email</label>
-                            <input type="email" value="surywanshim786@gmail.com">
-                        </div>
-                        <div class="form-group">
-                            <label>Portfolio URL</label>
-                            <input type="text" value="https://maheshs108.github.io/Portfolio">
-                        </div>
-                        <button type="submit" class="btn btn-primary">Save Changes</button>
-                    </form>
+            <!-- Experience Section -->
+            <section id="experience" class="content-section">
+                <div class="section-header">
+                    <h1><i class="fas fa-briefcase"></i> Experience</h1>
+                    <button class="btn btn-primary" onclick="openExperienceModal()">
+                        <i class="fas fa-plus"></i> Add Experience
+                    </button>
+                </div>
+
+                <div class="timeline" id="experienceTimeline">
+                    <div class="empty-state">
+                        <i class="fas fa-briefcase"></i>
+                        <p>No experience yet. Add your first experience!</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Education Section -->
+            <section id="education" class="content-section">
+                <div class="section-header">
+                    <h1><i class="fas fa-graduation-cap"></i> Education</h1>
+                    <button class="btn btn-primary" onclick="openEducationModal()">
+                        <i class="fas fa-plus"></i> Add Education
+                    </button>
+                </div>
+
+                <div class="timeline" id="educationTimeline">
+                    <div class="empty-state">
+                        <i class="fas fa-graduation-cap"></i>
+                        <p>No education yet. Add your first education!</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Preview Section -->
+            <section id="preview" class="content-section">
+                <div class="section-header">
+                    <h1><i class="fas fa-eye"></i> Portfolio Preview</h1>
+                    <button class="btn btn-secondary" onclick="generateHTML()">
+                        <i class="fas fa-code"></i> View HTML Code
+                    </button>
+                </div>
+
+                <div class="preview-container" id="previewContainer">
+                    <!-- Generated Preview -->
                 </div>
             </section>
         </main>
+    </div>
+
+    <!-- Modals (Project, Skill, Experience, Education) -->
+    <div id="projectModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2><i class="fas fa-folder-plus"></i> Add Project</h2>
+                <span class="close" onclick="closeModal('projectModal')">&times;</span>
+            </div>
+            <form id="projectForm" class="modal-body">
+                <input type="text" id="projectName" placeholder="Project Name" required>
+                <select id="projectCategory">
+                    <option value="web">Web Development</option>
+                    <option value="mobile">Mobile App</option>
+                    <option value="desktop">Desktop App</option>
+                    <option value="other">Other</option>
+                </select>
+                <textarea id="projectDescription" placeholder="Project Description" rows="4" required></textarea>
+                <input type="url" id="projectLink" placeholder="Project URL (optional)">
+                <input type="text" id="projectTech" placeholder="Technologies Used (comma-separated)">
+                <button type="submit" class="btn btn-primary">
+                    <i class="fas fa-save"></i> Save Project
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <div id="skillModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2><i class="fas fa-code"></i> Add Skill</h2>
+                <span class="close" onclick="closeModal('skillModal')">&times;</span>
+            </div>
+            <form id="skillForm" class="modal-body">
+                <input type="text" id="skillName" placeholder="Skill Name" required>
+                <select id="skillType">
+                    <option value="frontend">Frontend</option>
+                    <option value="backend">Backend</option>
+                    <option value="database">Database</option>
+                    <option value="tools">Tools</option>
+                </select>
+                <div class="range-input">
+                    <label>Proficiency: <span id="proficiencyValue">50</span>%</label>
+                    <input type="range" id="skillProficiency" min="0" max="100" value="50" oninput="document.getElementById('proficiencyValue').textContent = this.value">
+                </div>
+                <button type="submit" class="btn btn-primary">
+                    <i class="fas fa-save"></i> Save Skill
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <div id="experienceModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2><i class="fas fa-briefcase"></i> Add Experience</h2>
+                <span class="close" onclick="closeModal('experienceModal')">&times;</span>
+            </div>
+            <form id="experienceForm" class="modal-body">
+                <input type="text" id="expPosition" placeholder="Position" required>
+                <input type="text" id="expCompany" placeholder="Company" required>
+                <input type="text" id="expDuration" placeholder="Duration (e.g., Jan 2023 - Present)" required>
+                <textarea id="expDescription" placeholder="Description" rows="4"></textarea>
+                <button type="submit" class="btn btn-primary">
+                    <i class="fas fa-save"></i> Save Experience
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <div id="educationModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2><i class="fas fa-graduation-cap"></i> Add Education</h2>
+                <span class="close" onclick="closeModal('educationModal')">&times;</span>
+            </div>
+            <form id="educationForm" class="modal-body">
+                <input type="text" id="eduDegree" placeholder="Degree" required>
+                <input type="text" id="eduInstitution" placeholder="Institution" required>
+                <input type="text" id="eduYear" placeholder="Year (e.g., 2020 - 2024)" required>
+                <textarea id="eduDescription" placeholder="Description" rows="3"></textarea>
+                <button type="submit" class="btn btn-primary">
+                    <i class="fas fa-save"></i> Save Education
+                </button>
+            </form>
+        </div>
     </div>
 
     <script src="script.js"></script>
