@@ -3,134 +3,281 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fitness Tracker</title>
+    <title>FitTrack - Your Fitness Companion</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
     <div class="container">
-        <header>
-            <h1><i class="fas fa-dumbbell"></i> Fitness Tracker</h1>
-            <p>Track your fitness journey</p>
+        <!-- Header -->
+        <header class="header">
+            <div class="header-left">
+                <h1><i class="fas fa-dumbbell"></i> FitTrack</h1>
+                <p>Your Personal Fitness Companion</p>
+            </div>
+            <div class="header-right">
+                <div class="user-streak">
+                    <i class="fas fa-fire"></i>
+                    <span id="streakDays">7</span> Day Streak
+                </div>
+                <div class="user-avatar">MS</div>
+            </div>
         </header>
 
-        <!-- Daily Goals -->
-        <div class="goals-section">
-            <div class="goal-card">
-                <div class="goal-icon steps">
-                    <i class="fas fa-walking"></i>
-                </div>
-                <div class="goal-info">
-                    <h3>8,547</h3>
-                    <p>Steps / 10,000</p>
-                    <div class="progress-bar">
-                        <div class="progress" style="width: 85%"></div>
+        <!-- Daily Goals with Circular Progress -->
+        <div class="daily-goals">
+            <div class="goal-card steps">
+                <div class="circular-progress" data-progress="85">
+                    <svg viewBox="0 0 100 100">
+                        <circle class="progress-bg" cx="50" cy="50" r="45"></circle>
+                        <circle class="progress-bar" cx="50" cy="50" r="45" style="stroke-dashoffset: 42;"></circle>
+                    </svg>
+                    <div class="progress-content">
+                        <i class="fas fa-walking"></i>
+                        <span class="progress-value">8,547</span>
                     </div>
+                </div>
+                <h3>Steps</h3>
+                <p>Goal: 10,000</p>
+                <div class="goal-actions">
+                    <button onclick="incrementGoal('steps')"><i class="fas fa-plus"></i></button>
                 </div>
             </div>
 
-            <div class="goal-card">
-                <div class="goal-icon calories">
-                    <i class="fas fa-fire"></i>
-                </div>
-                <div class="goal-info">
-                    <h3>1,650</h3>
-                    <p>Calories / 2,000</p>
-                    <div class="progress-bar">
-                        <div class="progress" style="width: 82%"></div>
+            <div class="goal-card calories">
+                <div class="circular-progress" data-progress="75">
+                    <svg viewBox="0 0 100 100">
+                        <circle class="progress-bg" cx="50" cy="50" r="45"></circle>
+                        <circle class="progress-bar" cx="50" cy="50" r="45" style="stroke-dashoffset: 70;"></circle>
+                    </svg>
+                    <div class="progress-content">
+                        <i class="fas fa-fire"></i>
+                        <span class="progress-value">1,500</span>
                     </div>
+                </div>
+                <h3>Calories</h3>
+                <p>Goal: 2,000</p>
+                <div class="goal-actions">
+                    <button onclick="incrementGoal('calories')"><i class="fas fa-plus"></i></button>
                 </div>
             </div>
 
-            <div class="goal-card">
-                <div class="goal-icon water">
-                    <i class="fas fa-droplet"></i>
-                </div>
-                <div class="goal-info">
-                    <h3>6</h3>
-                    <p>Glasses / 8</p>
-                    <div class="progress-bar">
-                        <div class="progress" style="width: 75%"></div>
+            <div class="goal-card water">
+                <div class="circular-progress" data-progress="60">
+                    <svg viewBox="0 0 100 100">
+                        <circle class="progress-bg" cx="50" cy="50" r="45"></circle>
+                        <circle class="progress-bar" cx="50" cy="50" r="45" style="stroke-dashoffset: 112;"></circle>
+                    </svg>
+                    <div class="progress-content">
+                        <i class="fas fa-droplet"></i>
+                        <span class="progress-value">6</span>
                     </div>
+                </div>
+                <h3>Water</h3>
+                <p>Goal: 10 cups</p>
+                <div class="goal-actions">
+                    <button onclick="incrementGoal('water')"><i class="fas fa-plus"></i></button>
                 </div>
             </div>
 
-            <div class="goal-card">
-                <div class="goal-icon sleep">
-                    <i class="fas fa-bed"></i>
-                </div>
-                <div class="goal-info">
-                    <h3>7.5</h3>
-                    <p>Hours / 8</p>
-                    <div class="progress-bar">
-                        <div class="progress" style="width: 93%"></div>
+            <div class="goal-card sleep">
+                <div class="circular-progress" data-progress="90">
+                    <svg viewBox="0 0 100 100">
+                        <circle class="progress-bg" cx="50" cy="50" r="45"></circle>
+                        <circle class="progress-bar" cx="50" cy="50" r="45" style="stroke-dashoffset: 28;"></circle>
+                    </svg>
+                    <div class="progress-content">
+                        <i class="fas fa-moon"></i>
+                        <span class="progress-value">7.2h</span>
                     </div>
+                </div>
+                <h3>Sleep</h3>
+                <p>Goal: 8 hours</p>
+                <div class="goal-actions">
+                    <button onclick="incrementGoal('sleep')"><i class="fas fa-plus"></i></button>
                 </div>
             </div>
         </div>
 
-        <!-- Workout Plans -->
-        <div class="workout-section">
-            <h2>Today's Workout Plan</h2>
-            <div class="workout-list">
-                <div class="workout-item">
-                    <div class="workout-icon">
-                        <i class="fas fa-running"></i>
-                    </div>
-                    <div class="workout-details">
-                        <h3>Morning Run</h3>
-                        <p>30 minutes - Cardio</p>
-                    </div>
-                    <button class="btn-complete"><i class="fas fa-check"></i></button>
+        <!-- Quick Workout -->
+        <div class="quick-workout-section">
+            <div class="section-header">
+                <h2><i class="fas fa-bolt"></i> Quick Workout</h2>
+                <button class="btn-start" onclick="startWorkout()">
+                    <i class="fas fa-play"></i> Start Workout
+                </button>
+            </div>
+            <div class="workout-timer" id="workoutTimer">
+                <div class="timer-display">
+                    <span id="timerMinutes">00</span>:<span id="timerSeconds">00</span>
                 </div>
-
-                <div class="workout-item completed">
-                    <div class="workout-icon">
+                <div class="timer-controls">
+                    <button class="timer-btn" onclick="pauseWorkout()"><i class="fas fa-pause"></i></button>
+                    <button class="timer-btn" onclick="stopWorkout()"><i class="fas fa-stop"></i></button>
+                </div>
+                <div class="current-exercise">
+                    <div class="exercise-animation" id="exerciseAnimation">
                         <i class="fas fa-dumbbell"></i>
                     </div>
-                    <div class="workout-details">
-                        <h3>Strength Training</h3>
-                        <p>45 minutes - Upper Body</p>
-                    </div>
-                    <button class="btn-complete"><i class="fas fa-check"></i></button>
-                </div>
-
-                <div class="workout-item">
-                    <div class="workout-icon">
-                        <i class="fas fa-person-praying"></i>
-                    </div>
-                    <div class="workout-details">
-                        <h3>Yoga Session</h3>
-                        <p>20 minutes - Flexibility</p>
-                    </div>
-                    <button class="btn-complete"><i class="fas fa-check"></i></button>
+                    <h3 id="currentExercise">Ready to Start</h3>
                 </div>
             </div>
         </div>
 
-        <!-- Stats -->
-        <div class="stats-section">
-            <h2>Weekly Progress</h2>
-            <div class="stats-grid">
-                <div class="stat-card">
+        <!-- Workout Programs -->
+        <div class="workout-programs">
+            <h2><i class="fas fa-list"></i> Workout Programs</h2>
+            <div class="programs-grid">
+                <div class="program-card beginner">
+                    <div class="program-header">
+                        <i class="fas fa-seedling"></i>
+                        <h3>Beginner</h3>
+                    </div>
+                    <p>Perfect for getting started</p>
+                    <ul>
+                        <li>10 Push-ups</li>
+                        <li>15 Squats</li>
+                        <li>20 Jumping Jacks</li>
+                        <li>30s Plank</li>
+                    </ul>
+                    <button class="btn-program" onclick="selectProgram('beginner')">Start Program</button>
+                </div>
+
+                <div class="program-card intermediate">
+                    <div class="program-header">
+                        <i class="fas fa-fire"></i>
+                        <h3>Intermediate</h3>
+                    </div>
+                    <p>Take it to the next level</p>
+                    <ul>
+                        <li>20 Push-ups</li>
+                        <li>30 Squats</li>
+                        <li>40 Jumping Jacks</li>
+                        <li>60s Plank</li>
+                    </ul>
+                    <button class="btn-program" onclick="selectProgram('intermediate')">Start Program</button>
+                </div>
+
+                <div class="program-card advanced">
+                    <div class="program-header">
+                        <i class="fas fa-trophy"></i>
+                        <h3>Advanced</h3>
+                    </div>
+                    <p>Challenge yourself</p>
+                    <ul>
+                        <li>30 Push-ups</li>
+                        <li>50 Squats</li>
+                        <li>60 Jumping Jacks</li>
+                        <li>90s Plank</li>
+                    </ul>
+                    <button class="btn-program" onclick="selectProgram('advanced')">Start Program</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Activity History -->
+        <div class="activity-section">
+            <h2><i class="fas fa-history"></i> Recent Activities</h2>
+            <div class="activities-list" id="activitiesList">
+                <div class="activity-item">
+                    <div class="activity-icon running">
+                        <i class="fas fa-running"></i>
+                    </div>
+                    <div class="activity-details">
+                        <h4>Morning Run</h4>
+                        <p>5.2 km • 32 min • 420 cal</p>
+                        <span class="activity-time">Today, 7:30 AM</span>
+                    </div>
+                    <div class="activity-badge">
+                        <i class="fas fa-star"></i>
+                    </div>
+                </div>
+
+                <div class="activity-item">
+                    <div class="activity-icon gym">
+                        <i class="fas fa-dumbbell"></i>
+                    </div>
+                    <div class="activity-details">
+                        <h4>Strength Training</h4>
+                        <p>45 min • 380 cal</p>
+                        <span class="activity-time">Yesterday, 6:00 PM</span>
+                    </div>
+                    <div class="activity-badge">
+                        <i class="fas fa-fire"></i>
+                    </div>
+                </div>
+
+                <div class="activity-item">
+                    <div class="activity-icon yoga">
+                        <i class="fas fa-spa"></i>
+                    </div>
+                    <div class="activity-details">
+                        <h4>Yoga Session</h4>
+                        <p>30 min • 150 cal</p>
+                        <span class="activity-time">2 days ago, 8:00 AM</span>
+                    </div>
+                    <div class="activity-badge">
+                        <i class="fas fa-heart"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Weekly Stats Chart -->
+        <div class="weekly-stats">
+            <h2><i class="fas fa-chart-line"></i> Weekly Progress</h2>
+            <div class="stats-chart" id="statsChart">
+                <div class="chart-bar" style="height: 60%;" data-day="Mon" data-value="4200">
+                    <span class="bar-value">4.2k</span>
+                </div>
+                <div class="chart-bar" style="height: 75%;" data-day="Tue" data-value="6800">
+                    <span class="bar-value">6.8k</span>
+                </div>
+                <div class="chart-bar" style="height: 45%;" data-day="Wed" data-value="3500">
+                    <span class="bar-value">3.5k</span>
+                </div>
+                <div class="chart-bar" style="height: 90%;" data-day="Thu" data-value="9200">
+                    <span class="bar-value">9.2k</span>
+                </div>
+                <div class="chart-bar" style="height: 70%;" data-day="Fri" data-value="7100">
+                    <span class="bar-value">7.1k</span>
+                </div>
+                <div class="chart-bar" style="height: 85%;" data-day="Sat" data-value="8500">
+                    <span class="bar-value">8.5k</span>
+                </div>
+                <div class="chart-bar active" style="height: 55%;" data-day="Sun" data-value="5400">
+                    <span class="bar-value">5.4k</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Achievement Badges -->
+        <div class="achievements-section">
+            <h2><i class="fas fa-medal"></i> Achievements</h2>
+            <div class="achievements-grid">
+                <div class="achievement-badge earned">
+                    <i class="fas fa-fire"></i>
+                    <span>7-Day Streak</span>
+                </div>
+                <div class="achievement-badge earned">
                     <i class="fas fa-trophy"></i>
-                    <h3>5/7</h3>
-                    <p>Goals Achieved</p>
+                    <span>10K Steps</span>
                 </div>
-                <div class="stat-card">
-                    <i class="fas fa-fire-flame-curved"></i>
-                    <h3>2,450</h3>
-                    <p>Avg Calories</p>
+                <div class="achievement-badge earned">
+                    <i class="fas fa-star"></i>
+                    <span>Early Bird</span>
                 </div>
-                <div class="stat-card">
-                    <i class="fas fa-chart-line"></i>
-                    <h3>12.5</h3>
-                    <p>Weight Loss (kg)</p>
+                <div class="achievement-badge">
+                    <i class="fas fa-crown"></i>
+                    <span>30-Day Streak</span>
                 </div>
-                <div class="stat-card">
-                    <i class="fas fa-clock"></i>
-                    <h3>6.2</h3>
-                    <p>Workout Hours</p>
+                <div class="achievement-badge">
+                    <i class="fas fa-mountain"></i>
+                    <span>Mountain Climber</span>
+                </div>
+                <div class="achievement-badge">
+                    <i class="fas fa-bolt"></i>
+                    <span>Speed Demon</span>
                 </div>
             </div>
         </div>
