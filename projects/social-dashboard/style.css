@@ -1,0 +1,238 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+    padding: 2rem;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+header {
+    text-align: center;
+    color: white;
+    margin-bottom: 3rem;
+    animation: fadeIn 0.5s;
+}
+
+header h1 {
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+}
+
+header p {
+    font-size: 1.2rem;
+    opacity: 0.9;
+}
+
+/* Platforms */
+.platforms {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    margin-bottom: 3rem;
+}
+
+.platform-card {
+    background: white;
+    padding: 2rem;
+    border-radius: 15px;
+    text-align: center;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    border-top: 5px solid;
+    transition: transform 0.3s;
+    animation: slideUp 0.5s;
+}
+
+.platform-card:hover {
+    transform: translateY(-10px);
+}
+
+.platform-card.facebook {
+    border-top-color: #1877f2;
+}
+
+.platform-card.twitter {
+    border-top-color: #1da1f2;
+}
+
+.platform-card.instagram {
+    border-top-color: #e4405f;
+}
+
+.platform-card.youtube {
+    border-top-color: #ff0000;
+}
+
+.platform-header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 1.5rem;
+    color: #64748b;
+    font-weight: 600;
+}
+
+.platform-header i {
+    font-size: 1.5rem;
+}
+
+.facebook .platform-header i {
+    color: #1877f2;
+}
+
+.twitter .platform-header i {
+    color: #1da1f2;
+}
+
+.instagram .platform-header i {
+    color: #e4405f;
+}
+
+.youtube .platform-header i {
+    color: #ff0000;
+}
+
+.platform-card h2 {
+    font-size: 3rem;
+    color: #1e293b;
+    margin-bottom: 0.5rem;
+}
+
+.platform-card p {
+    color: #64748b;
+    text-transform: uppercase;
+    font-size: 0.9rem;
+    letter-spacing: 3px;
+    margin-bottom: 1rem;
+}
+
+.growth {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    font-weight: 600;
+    font-size: 0.9rem;
+}
+
+.growth.positive {
+    color: #10b981;
+    background: #d1fae5;
+}
+
+.growth.negative {
+    color: #ef4444;
+    background: #fee2e2;
+}
+
+/* Overview */
+.overview {
+    background: white;
+    padding: 2rem;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    animation: fadeIn 0.7s;
+}
+
+.overview h2 {
+    color: #1e293b;
+    margin-bottom: 2rem;
+}
+
+.overview-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+}
+
+.metric-card {
+    background: #f8fafc;
+    padding: 1.5rem;
+    border-radius: 10px;
+    transition: all 0.3s;
+}
+
+.metric-card:hover {
+    background: #f1f5f9;
+    transform: scale(1.02);
+}
+
+.metric-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.metric-header span {
+    color: #64748b;
+    font-weight: 600;
+    font-size: 0.9rem;
+}
+
+.metric-header i {
+    font-size: 1.5rem;
+    color: #94a3b8;
+}
+
+.metric-card h3 {
+    font-size: 2rem;
+    color: #1e293b;
+    margin-bottom: 0.5rem;
+}
+
+.metric-card .growth {
+    font-size: 0.85rem;
+    padding: 0.25rem 0.75rem;
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    header h1 {
+        font-size: 2rem;
+    }
+    
+    .platforms {
+        grid-template-columns: 1fr;
+    }
+    
+    .overview-grid {
+        grid-template-columns: 1fr;
+    }
+}

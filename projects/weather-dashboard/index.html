@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1><i class="fas fa-cloud-sun"></i> Weather Dashboard</h1>
+            <div class="search-box">
+                <input type="text" id="cityInput" placeholder="Search city...">
+                <button id="searchBtn"><i class="fas fa-search"></i></button>
+            </div>
+        </header>
+
+        <!-- Current Weather -->
+        <div class="current-weather" id="currentWeather">
+            <div class="weather-main">
+                <div class="city-info">
+                    <h2 id="cityName">Pusad</h2>
+                    <p id="weatherDate"></p>
+                </div>
+                <div class="temp-display">
+                    <div class="temp-icon">
+                        <i class="fas fa-sun"></i>
+                    </div>
+                    <div>
+                        <h1 class="temperature" id="temperature">32°C</h1>
+                        <p class="weather-desc" id="weatherDesc">Sunny</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="weather-details">
+                <div class="detail-card">
+                    <i class="fas fa-wind"></i>
+                    <div>
+                        <p>Wind Speed</p>
+                        <h3 id="windSpeed">12 km/h</h3>
+                    </div>
+                </div>
+                <div class="detail-card">
+                    <i class="fas fa-droplet"></i>
+                    <div>
+                        <p>Humidity</p>
+                        <h3 id="humidity">65%</h3>
+                    </div>
+                </div>
+                <div class="detail-card">
+                    <i class="fas fa-gauge"></i>
+                    <div>
+                        <p>Pressure</p>
+                        <h3 id="pressure">1013 hPa</h3>
+                    </div>
+                </div>
+                <div class="detail-card">
+                    <i class="fas fa-eye"></i>
+                    <div>
+                        <p>Visibility</p>
+                        <h3 id="visibility">10 km</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Forecast -->
+        <div class="forecast-section">
+            <h2>7-Day Forecast</h2>
+            <div class="forecast-grid" id="forecastGrid"></div>
+        </div>
+
+        <!-- Popular Cities -->
+        <div class="popular-cities">
+            <h2>Popular Cities</h2>
+            <div class="cities-grid">
+                <button class="city-btn" onclick="searchCity('Mumbai')">Mumbai</button>
+                <button class="city-btn" onclick="searchCity('Delhi')">Delhi</button>
+                <button class="city-btn" onclick="searchCity('Bangalore')">Bangalore</button>
+                <button class="city-btn" onclick="searchCity('Pune')">Pune</button>
+                <button class="city-btn" onclick="searchCity('Hyderabad')">Hyderabad</button>
+                <button class="city-btn" onclick="searchCity('Chennai')">Chennai</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
