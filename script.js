@@ -367,4 +367,4 @@ window.addEventListener('scroll', debounce(() => {
 // ===== Console Easter Egg =====
 console.log('%c👋 Hello, curious developer!', 'font-size: 20px; color: #6366f1; font-weight: bold;');
 console.log('%cLike what you see? Let\'s connect!', 'font-size: 14px; color: #6b7280;');
-console.log('%c📧 your.email@example.com', 'font-size: 12px; color: #6366f1;');
+console.log('%c📧 surywanshim786@gmail.com', 'font-size: 12px; color: #6366f1;');
