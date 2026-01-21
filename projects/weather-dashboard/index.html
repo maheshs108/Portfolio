@@ -3,87 +3,216 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Weather Dashboard</title>
+    <title>WeatherNow - Live Weather Dashboard</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
+    <div class="weather-bg" id="weatherBg">
+        <div class="weather-particles"></div>
+    </div>
+
     <div class="container">
+        <!-- Header -->
         <header class="header">
-            <h1><i class="fas fa-cloud-sun"></i> Weather Dashboard</h1>
-            <div class="search-box">
-                <input type="text" id="cityInput" placeholder="Search city...">
-                <button id="searchBtn"><i class="fas fa-search"></i></button>
+            <div class="logo">
+                <i class="fas fa-cloud-sun"></i>
+                <h1>WeatherNow</h1>
+            </div>
+            <div class="search-container">
+                <div class="search-box">
+                    <i class="fas fa-search"></i>
+                    <input type="text" id="citySearch" placeholder="Search for a city...">
+                    <button class="search-btn" onclick="searchWeather()">
+                        <i class="fas fa-arrow-right"></i>
+                    </button>
+                </div>
+                <button class="location-btn" onclick="getCurrentLocation()" title="Use My Location">
+                    <i class="fas fa-location-crosshairs"></i>
+                </button>
             </div>
         </header>
 
         <!-- Current Weather -->
-        <div class="current-weather" id="currentWeather">
-            <div class="weather-main">
-                <div class="city-info">
-                    <h2 id="cityName">Pusad</h2>
-                    <p id="weatherDate"></p>
-                </div>
-                <div class="temp-display">
-                    <div class="temp-icon">
-                        <i class="fas fa-sun"></i>
-                    </div>
-                    <div>
-                        <h1 class="temperature" id="temperature">32°C</h1>
-                        <p class="weather-desc" id="weatherDesc">Sunny</p>
-                    </div>
-                </div>
+        <div class="current-weather">
+            <div class="location-info">
+                <h2 id="cityName">Mumbai, India</h2>
+                <p id="currentDate">Wednesday, January 21, 2026</p>
+                <p id="currentTime">2:30 PM</p>
             </div>
             
+            <div class="weather-main">
+                <div class="weather-icon-wrapper">
+                    <i class="fas fa-cloud-sun weather-icon-large" id="weatherIcon"></i>
+                    <div class="weather-condition" id="weatherCondition">Partly Cloudy</div>
+                </div>
+                <div class="temperature-display">
+                    <span class="temperature" id="temperature">28</span>
+                    <span class="temp-unit">°C</span>
+                </div>
+            </div>
+
             <div class="weather-details">
                 <div class="detail-card">
-                    <i class="fas fa-wind"></i>
-                    <div>
-                        <p>Wind Speed</p>
-                        <h3 id="windSpeed">12 km/h</h3>
-                    </div>
-                </div>
-                <div class="detail-card">
                     <i class="fas fa-droplet"></i>
-                    <div>
-                        <p>Humidity</p>
-                        <h3 id="humidity">65%</h3>
+                    <div class="detail-info">
+                        <span class="detail-label">Humidity</span>
+                        <span class="detail-value" id="humidity">65%</span>
                     </div>
                 </div>
                 <div class="detail-card">
-                    <i class="fas fa-gauge"></i>
-                    <div>
-                        <p>Pressure</p>
-                        <h3 id="pressure">1013 hPa</h3>
+                    <i class="fas fa-wind"></i>
+                    <div class="detail-info">
+                        <span class="detail-label">Wind Speed</span>
+                        <span class="detail-value" id="windSpeed">15 km/h</span>
+                    </div>
+                </div>
+                <div class="detail-card">
+                    <i class="fas fa-gauge-high"></i>
+                    <div class="detail-info">
+                        <span class="detail-label">Pressure</span>
+                        <span class="detail-value" id="pressure">1013 hPa</span>
                     </div>
                 </div>
                 <div class="detail-card">
                     <i class="fas fa-eye"></i>
-                    <div>
-                        <p>Visibility</p>
-                        <h3 id="visibility">10 km</h3>
+                    <div class="detail-info">
+                        <span class="detail-label">Visibility</span>
+                        <span class="detail-value" id="visibility">10 km</span>
+                    </div>
+                </div>
+                <div class="detail-card">
+                    <i class="fas fa-sun"></i>
+                    <div class="detail-info">
+                        <span class="detail-label">UV Index</span>
+                        <span class="detail-value" id="uvIndex">7 (High)</span>
+                    </div>
+                </div>
+                <div class="detail-card">
+                    <i class="fas fa-temperature-half"></i>
+                    <div class="detail-info">
+                        <span class="detail-label">Feels Like</span>
+                        <span class="detail-value" id="feelsLike">30°C</span>
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- Forecast -->
-        <div class="forecast-section">
-            <h2>7-Day Forecast</h2>
-            <div class="forecast-grid" id="forecastGrid"></div>
+        <!-- Sun & Moon Info -->
+        <div class="sun-moon-info">
+            <div class="sun-card">
+                <div class="sun-icon">
+                    <i class="fas fa-sunrise"></i>
+                </div>
+                <div class="sun-details">
+                    <h3>Sunrise</h3>
+                    <p id="sunrise">6:45 AM</p>
+                </div>
+            </div>
+            <div class="sun-arc">
+                <svg width="100%" height="100" viewBox="0 0 200 100">
+                    <path d="M 10 90 Q 100 10, 190 90" stroke="#FDB813" stroke-width="3" fill="none" opacity="0.3"/>
+                    <circle id="sunPosition" r="8" fill="#FDB813">
+                        <animateMotion dur="10s" repeatCount="indefinite">
+                            <mpath href="#sunPath"/>
+                        </animateMotion>
+                    </circle>
+                    <path id="sunPath" d="M 10 90 Q 100 10, 190 90" fill="none"/>
+                </svg>
+            </div>
+            <div class="sun-card">
+                <div class="sun-icon">
+                    <i class="fas fa-sunset"></i>
+                </div>
+                <div class="sun-details">
+                    <h3>Sunset</h3>
+                    <p id="sunset">6:15 PM</p>
+                </div>
+            </div>
         </div>
 
-        <!-- Popular Cities -->
-        <div class="popular-cities">
-            <h2>Popular Cities</h2>
-            <div class="cities-grid">
-                <button class="city-btn" onclick="searchCity('Mumbai')">Mumbai</button>
-                <button class="city-btn" onclick="searchCity('Delhi')">Delhi</button>
-                <button class="city-btn" onclick="searchCity('Bangalore')">Bangalore</button>
-                <button class="city-btn" onclick="searchCity('Pune')">Pune</button>
-                <button class="city-btn" onclick="searchCity('Hyderabad')">Hyderabad</button>
-                <button class="city-btn" onclick="searchCity('Chennai')">Chennai</button>
+        <!-- Hourly Forecast -->
+        <div class="forecast-section">
+            <h2><i class="fas fa-clock"></i> Hourly Forecast</h2>
+            <div class="hourly-forecast" id="hourlyForecast">
+                <!-- Generated by JavaScript -->
             </div>
+        </div>
+
+        <!-- 7-Day Forecast -->
+        <div class="forecast-section">
+            <h2><i class="fas fa-calendar-week"></i> 7-Day Forecast</h2>
+            <div class="weekly-forecast" id="weeklyForecast">
+                <!-- Generated by JavaScript -->
+            </div>
+        </div>
+
+        <!-- Air Quality Index -->
+        <div class="aqi-section">
+            <h2><i class="fas fa-smog"></i> Air Quality Index</h2>
+            <div class="aqi-card">
+                <div class="aqi-value" id="aqiValue">
+                    <span class="aqi-number">42</span>
+                    <span class="aqi-label">Good</span>
+                </div>
+                <div class="aqi-bar">
+                    <div class="aqi-indicator" style="left: 20%"></div>
+                    <div class="aqi-segment good"></div>
+                    <div class="aqi-segment moderate"></div>
+                    <div class="aqi-segment unhealthy-sensitive"></div>
+                    <div class="aqi-segment unhealthy"></div>
+                    <div class="aqi-segment very-unhealthy"></div>
+                    <div class="aqi-segment hazardous"></div>
+                </div>
+                <div class="aqi-legend">
+                    <span>Good</span>
+                    <span>Moderate</span>
+                    <span>Unhealthy</span>
+                    <span>Hazardous</span>
+                </div>
+                <div class="aqi-components">
+                    <div class="component">
+                        <span>PM2.5</span>
+                        <strong id="pm25">12</strong>
+                    </div>
+                    <div class="component">
+                        <span>PM10</span>
+                        <strong id="pm10">24</strong>
+                    </div>
+                    <div class="component">
+                        <span>O₃</span>
+                        <strong id="o3">38</strong>
+                    </div>
+                    <div class="component">
+                        <span>NO₂</span>
+                        <strong id="no2">15</strong>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Weather Alerts -->
+        <div class="alerts-section" id="alertsSection" style="display: none;">
+            <h2><i class="fas fa-triangle-exclamation"></i> Weather Alerts</h2>
+            <div class="alert-card">
+                <div class="alert-icon">⚠️</div>
+                <div class="alert-content">
+                    <h3>Heat Wave Warning</h3>
+                    <p>High temperatures expected. Stay hydrated and avoid prolonged sun exposure.</p>
+                    <span class="alert-time">Valid until 8:00 PM</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Favorite Cities -->
+        <div class="favorites-section">
+            <h2><i class="fas fa-heart"></i> Favorite Cities</h2>
+            <div class="favorites-grid" id="favoritesGrid">
+                <!-- Generated by JavaScript -->
+            </div>
+            <button class="add-favorite-btn" onclick="addToFavorites()">
+                <i class="fas fa-plus"></i> Add Current City
+            </button>
         </div>
     </div>
 
