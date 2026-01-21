@@ -270,9 +270,21 @@ const statsObserver = new IntersectionObserver((entries) => {
             hasAnimated.add(entry.target);
             const target = entry.target;
             const text = target.textContent;
+            
+            // Check if the text contains "Fresher" or other non-numeric text
+            if (text.toLowerCase().includes('fresher') || !/\d/.test(text)) {
+                // Skip animation for text-only stats like "Fresher"
+                return;
+            }
+            
             const hasPlus = text.includes('+');
             const hasPercent = text.includes('%');
             const number = parseInt(text.replace(/\D/g, ''));
+            
+            // Only animate if we have a valid number
+            if (isNaN(number)) {
+                return;
+            }
             
             let current = 0;
             const increment = number / 50;
