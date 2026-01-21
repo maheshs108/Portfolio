@@ -1,0 +1,417 @@
+/**
+ * Universal Dark Mode Styles
+ * Eye-friendly dark colors for all apps
+ */
+
+/* ===== Dark Mode Variables ===== */
+body.dark-mode {
+    /* Background Colors - Soft dark, easy on eyes */
+    --dark-bg-primary: #0F172A;
+    --dark-bg-secondary: #1E293B;
+    --dark-bg-tertiary: #334155;
+    --dark-bg-card: #1E293B;
+    --dark-bg-hover: #334155;
+    
+    /* Text Colors - High contrast but not harsh */
+    --dark-text-primary: #F1F5F9;
+    --dark-text-secondary: #94A3B8;
+    --dark-text-muted: #64748B;
+    
+    /* Border Colors */
+    --dark-border: #334155;
+    --dark-border-light: #475569;
+    
+    /* Accent Colors - Adjusted for dark mode */
+    --dark-primary: #6366F1;
+    --dark-primary-light: #818CF8;
+    --dark-success: #10B981;
+    --dark-warning: #F59E0B;
+    --dark-danger: #EF4444;
+    --dark-info: #3B82F6;
+    
+    /* Shadows - Softer in dark mode */
+    --dark-shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.4);
+    --dark-shadow-md: 0 4px 16px rgba(0, 0, 0, 0.5);
+    --dark-shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.6);
+}
+
+/* ===== Base Dark Mode Styles ===== */
+body.dark-mode {
+    background: var(--dark-bg-primary);
+    color: var(--dark-text-primary);
+}
+
+/* Cards and Containers */
+body.dark-mode .card,
+body.dark-mode .project-card,
+body.dark-mode .stat-card,
+body.dark-mode .skill-category,
+body.dark-mode .contact-card,
+body.dark-mode .about-text,
+body.dark-mode .weather-main-card,
+body.dark-mode .forecast-section,
+body.dark-mode .task-card,
+body.dark-mode .item-card {
+    background: var(--dark-bg-card) !important;
+    border-color: var(--dark-border) !important;
+    box-shadow: var(--dark-shadow-md) !important;
+}
+
+/* Headers and Navigation */
+body.dark-mode header,
+body.dark-mode .header,
+body.dark-mode nav,
+body.dark-mode .navbar {
+    background: var(--dark-bg-secondary) !important;
+    border-color: var(--dark-border) !important;
+}
+
+/* Text Elements */
+body.dark-mode h1,
+body.dark-mode h2,
+body.dark-mode h3,
+body.dark-mode h4,
+body.dark-mode h5,
+body.dark-mode h6 {
+    color: var(--dark-text-primary) !important;
+}
+
+body.dark-mode p,
+body.dark-mode span,
+body.dark-mode li {
+    color: var(--dark-text-secondary) !important;
+}
+
+body.dark-mode .text-muted,
+body.dark-mode .section-subtitle {
+    color: var(--dark-text-muted) !important;
+}
+
+/* Links */
+body.dark-mode a {
+    color: var(--dark-primary-light);
+}
+
+body.dark-mode a:hover {
+    color: var(--dark-primary);
+}
+
+/* Buttons */
+body.dark-mode button:not(.btn-primary):not(.btn-secondary),
+body.dark-mode .btn {
+    background: var(--dark-bg-tertiary) !important;
+    color: var(--dark-text-primary) !important;
+    border-color: var(--dark-border) !important;
+}
+
+body.dark-mode button:hover:not(.btn-primary):not(.btn-secondary) {
+    background: var(--dark-bg-hover) !important;
+}
+
+body.dark-mode .btn-primary {
+    background: linear-gradient(135deg, var(--dark-primary), var(--dark-primary-light)) !important;
+    color: white !important;
+}
+
+/* Forms */
+body.dark-mode input,
+body.dark-mode textarea,
+body.dark-mode select {
+    background: var(--dark-bg-tertiary) !important;
+    color: var(--dark-text-primary) !important;
+    border-color: var(--dark-border) !important;
+}
+
+body.dark-mode input:focus,
+body.dark-mode textarea:focus,
+body.dark-mode select:focus {
+    border-color: var(--dark-primary) !important;
+    box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.2) !important;
+}
+
+body.dark-mode input::placeholder,
+body.dark-mode textarea::placeholder {
+    color: var(--dark-text-muted) !important;
+}
+
+/* Modals */
+body.dark-mode .modal-content {
+    background: var(--dark-bg-secondary) !important;
+}
+
+body.dark-mode .modal-header {
+    background: var(--dark-bg-tertiary) !important;
+    border-bottom-color: var(--dark-border) !important;
+}
+
+/* Tables */
+body.dark-mode table {
+    background: var(--dark-bg-card);
+    color: var(--dark-text-primary);
+}
+
+body.dark-mode th {
+    background: var(--dark-bg-tertiary) !important;
+    color: var(--dark-text-primary) !important;
+    border-color: var(--dark-border) !important;
+}
+
+body.dark-mode td {
+    border-color: var(--dark-border) !important;
+}
+
+body.dark-mode tr:hover {
+    background: var(--dark-bg-hover) !important;
+}
+
+/* Badges and Tags */
+body.dark-mode .badge,
+body.dark-mode .tag,
+body.dark-mode .category-badge {
+    background: var(--dark-bg-tertiary) !important;
+    color: var(--dark-text-primary) !important;
+}
+
+/* Progress Bars */
+body.dark-mode .progress,
+body.dark-mode .progress-bar {
+    background: var(--dark-bg-tertiary) !important;
+}
+
+body.dark-mode .progress-fill {
+    background: linear-gradient(90deg, var(--dark-primary), var(--dark-primary-light)) !important;
+}
+
+/* Dropdowns */
+body.dark-mode .dropdown-menu,
+body.dark-mode .suggestions-dropdown {
+    background: var(--dark-bg-card) !important;
+    border-color: var(--dark-border) !important;
+    box-shadow: var(--dark-shadow-lg) !important;
+}
+
+body.dark-mode .dropdown-item {
+    color: var(--dark-text-primary) !important;
+}
+
+body.dark-mode .dropdown-item:hover {
+    background: var(--dark-bg-hover) !important;
+}
+
+/* Scrollbars */
+body.dark-mode ::-webkit-scrollbar {
+    background: var(--dark-bg-secondary);
+}
+
+body.dark-mode ::-webkit-scrollbar-track {
+    background: var(--dark-bg-tertiary);
+}
+
+body.dark-mode ::-webkit-scrollbar-thumb {
+    background: var(--dark-border-light);
+}
+
+body.dark-mode ::-webkit-scrollbar-thumb:hover {
+    background: var(--dark-text-muted);
+}
+
+/* Specific Components */
+
+/* Hero Section */
+body.dark-mode .hero {
+    background: linear-gradient(135deg, #1E293B 0%, #0F172A 100%) !important;
+}
+
+/* Footer */
+body.dark-mode footer,
+body.dark-mode .footer {
+    background: var(--dark-bg-secondary) !important;
+    border-top-color: var(--dark-border) !important;
+}
+
+/* Code Blocks */
+body.dark-mode code,
+body.dark-mode pre {
+    background: var(--dark-bg-tertiary) !important;
+    color: #E879F9 !important;
+    border-color: var(--dark-border) !important;
+}
+
+/* Alerts */
+body.dark-mode .alert {
+    background: var(--dark-bg-tertiary) !important;
+    border-color: var(--dark-border) !important;
+}
+
+body.dark-mode .alert-success {
+    background: rgba(16, 185, 129, 0.1) !important;
+    border-color: var(--dark-success) !important;
+    color: var(--dark-success) !important;
+}
+
+body.dark-mode .alert-warning {
+    background: rgba(245, 158, 11, 0.1) !important;
+    border-color: var(--dark-warning) !important;
+    color: var(--dark-warning) !important;
+}
+
+body.dark-mode .alert-danger {
+    background: rgba(239, 68, 68, 0.1) !important;
+    border-color: var(--dark-danger) !important;
+    color: var(--dark-danger) !important;
+}
+
+/* Tooltips */
+body.dark-mode .tooltip {
+    background: var(--dark-bg-tertiary) !important;
+    color: var(--dark-text-primary) !important;
+}
+
+/* Images - Slight dimming in dark mode */
+body.dark-mode img:not(.no-filter) {
+    opacity: 0.9;
+}
+
+body.dark-mode img:hover {
+    opacity: 1;
+}
+
+/* Icons - Adjust color */
+body.dark-mode .fas,
+body.dark-mode .fab,
+body.dark-mode .far {
+    color: var(--dark-text-secondary);
+}
+
+/* Specific to Weather App */
+body.dark-mode .weather-bg {
+    background: linear-gradient(135deg, #1E293B 0%, #334155 50%, #475569 100%) !important;
+}
+
+body.dark-mode .mini-card {
+    background: var(--dark-bg-card) !important;
+}
+
+/* Specific to E-Commerce */
+body.dark-mode .product-card {
+    background: var(--dark-bg-card) !important;
+}
+
+body.dark-mode .product-card:hover {
+    box-shadow: var(--dark-shadow-lg) !important;
+}
+
+/* Specific to Task Management */
+body.dark-mode .category-tab {
+    background: rgba(255, 255, 255, 0.05) !important;
+    border-color: var(--dark-border) !important;
+}
+
+body.dark-mode .category-tab.active {
+    background: var(--dark-primary) !important;
+}
+
+/* Specific to Portfolio CMS */
+body.dark-mode .sidebar {
+    background: var(--dark-bg-secondary) !important;
+}
+
+/* Specific to Social Dashboard */
+body.dark-mode .platform-card {
+    background: var(--dark-bg-card) !important;
+}
+
+/* Specific to Fitness Tracker */
+body.dark-mode .goal-card {
+    background: var(--dark-bg-card) !important;
+}
+
+body.dark-mode .circular-progress svg .progress-bg {
+    stroke: var(--dark-bg-tertiary) !important;
+}
+
+/* Charts in Dark Mode */
+body.dark-mode canvas {
+    filter: brightness(0.9);
+}
+
+/* Glassmorphism Effect in Dark Mode */
+body.dark-mode .glass {
+    background: rgba(30, 41, 59, 0.7) !important;
+    backdrop-filter: blur(10px) !important;
+}
+
+/* Gradient Overlays */
+body.dark-mode .gradient-overlay {
+    background: linear-gradient(135deg, rgba(99, 102, 241, 0.1), rgba(139, 92, 246, 0.1)) !important;
+}
+
+/* Selection Color */
+body.dark-mode ::selection {
+    background: var(--dark-primary);
+    color: white;
+}
+
+body.dark-mode ::-moz-selection {
+    background: var(--dark-primary);
+    color: white;
+}
+
+/* Smooth Transitions */
+body.dark-mode * {
+    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease !important;
+}
+
+/* Ensure readability */
+body.dark-mode {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* Loading Spinner in Dark Mode */
+body.dark-mode .spinner,
+body.dark-mode .loader {
+    border-color: var(--dark-border);
+    border-top-color: var(--dark-primary) !important;
+}
+
+/* Notification in Dark Mode */
+body.dark-mode .notification {
+    background: var(--dark-bg-tertiary) !important;
+    color: var(--dark-text-primary) !important;
+    box-shadow: var(--dark-shadow-lg) !important;
+}
+
+/* Accessibility - Ensure sufficient contrast */
+body.dark-mode .text-primary {
+    color: var(--dark-text-primary) !important;
+}
+
+body.dark-mode .text-secondary {
+    color: var(--dark-text-secondary) !important;
+}
+
+body.dark-mode .bg-primary {
+    background: var(--dark-primary) !important;
+}
+
+/* Media Queries for Dark Mode */
+@media (prefers-color-scheme: dark) {
+    /* Respect system preference if user hasn't chosen */
+    body:not(.light-mode) {
+        /* Apply dark mode automatically */
+    }
+}
+
+/* Print Mode - Always light */
+@media print {
+    body.dark-mode {
+        background: white !important;
+        color: black !important;
+    }
+    
+    body.dark-mode * {
+        background: white !important;
+        color: black !important;
+    }
+}
