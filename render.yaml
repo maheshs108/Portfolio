@@ -1,0 +1,9 @@
+# Render.com – free static site (no build)
+# In Render Dashboard: New → Static Site → Connect repo
+# Build command: leave empty. Publish directory: .
+services:
+  - type: web
+    name: portfolio
+    env: static
+    buildCommand: "echo 'No build'"
+    staticPublishPath: .

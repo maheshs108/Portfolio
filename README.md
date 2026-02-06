@@ -2,6 +2,76 @@
 
 A modern, responsive portfolio website built with HTML, CSS, and JavaScript. Features a clean design, smooth animations, and an excellent user experience.
 
+## Direct link for running
+
+**1. Run from your computer (no server)**  
+Copy this link and paste it in Chrome’s address bar, then press Enter (use your actual project folder path if different):
+
+```
+file:///C:/Users/A/Desktop/Myportfolio/index.html
+```
+
+Or: open the project folder and **double-click `index.html`** to open the portfolio in your browser.
+
+---
+
+**2. Run with a local server**  
+In the project folder, run in the terminal:
+
+```bash
+npx serve
+```
+
+Then open this direct link in Chrome:
+
+```
+http://localhost:3000
+```
+
+(If the terminal shows a different port, use that URL instead.)
+
+---
+
+**3. Run online (free platform – fixes 404)**  
+Deploy to a free platform so you get a direct link that works (no 404). Choose one:
+
+---
+
+### Fix 404 – deploy on a free platform (get a runnable link)
+
+**Option A: GitHub Pages (recommended)**  
+1. Push this project to a GitHub repo (e.g. `maheshs108/Portfolio`).  
+2. In the repo go to **Settings → Pages**.  
+3. Under **Build and deployment**, set **Source** to **GitHub Actions**.  
+4. Save. The workflow in `.github/workflows/deploy-pages.yml` will run on the next push to `main` (or `master`).  
+5. After it finishes, your direct link is:
+   ```
+   https://maheshs108.github.io/Portfolio/
+   ```
+   (Replace `maheshs108` and `Portfolio` with your username and repo name.)
+
+**Option B: Netlify**  
+1. Go to [netlify.com](https://netlify.com) and sign in.  
+2. **Add new site → Import an existing project** → connect your GitHub repo.  
+3. **Build command:** leave empty. **Publish directory:** `.` (root).  
+4. Deploy. Your direct link will be like `https://something.netlify.app`.
+
+**Option C: Vercel**  
+1. Go to [vercel.com](https://vercel.com) and sign in.  
+2. **Add New → Project** → import your GitHub repo.  
+3. **Root Directory:** leave as `.`. Deploy.  
+4. Your direct link will be like `https://your-project.vercel.app`.
+
+**Option D: Render**  
+1. Go to [render.com](https://render.com) and sign in.  
+2. **New → Static Site** → connect your GitHub repo.  
+3. **Build command:** leave empty or `echo 'No build'`. **Publish directory:** `.`.  
+4. Create. Your direct link will be like `https://your-site.onrender.com`.
+
+---
+
+After deploying, use the link from that platform to open the portfolio; it should run without 404.
+
 ## Features
 
 - 🎨 **Modern Design** - Clean, professional layout with gradient accents
@@ -23,6 +93,27 @@ A modern, responsive portfolio website built with HTML, CSS, and JavaScript. Fea
 5. **Contact Section** - Easy way for people to reach you
 6. **Footer** - Professional closing with navigation
 
+## How to Run This Program
+
+**Main entry:** Open the portfolio root `index.html` (this folder).
+
+### Option 1: Open directly in Chrome (or any browser)
+1. Go to the project folder: `C:\Users\A\Desktop\Myportfolio` (or wherever you cloned it).
+2. Double-click **`index.html`**, or right-click → **Open with** → **Google Chrome** (or Edge, Firefox, etc.).
+3. No build or server required—it runs as a static site.
+
+### Option 2: Run with a local server (recommended for projects)
+- **VS Code:** Install the "Live Server" extension, right-click `index.html` → **Open with Live Server**. The site opens in your default browser (e.g. Chrome).
+- **Command line:** From the project root run:
+  ```bash
+  npx serve
+  ```
+  Then open the URL shown (e.g. `http://localhost:3000`) in Chrome.
+
+**Individual project apps** (TaskMaster, WeatherNow, Netflix clone, etc.) are under `projects/<app-name>/`. Open `projects/<app-name>/index.html` in Chrome the same way, or use Live Server from that folder.
+
+---
+
 ## Quick Start
 
 1. **Clone or download** this portfolio
@@ -37,7 +128,7 @@ A modern, responsive portfolio website built with HTML, CSS, and JavaScript. Fea
    - Add screenshots of your projects
 
 4. **Open in browser**:
-   - Simply open `index.html` in any modern web browser
+   - Simply open `index.html` in any modern web browser (e.g. Chrome)
    - No build process or dependencies required!
 
 ## Customization Guide
@@ -92,7 +183,9 @@ Replace the placeholder divs with actual images:
 - **HTML5** - Semantic markup
 - **CSS3** - Modern styling with CSS Grid, Flexbox, and animations
 - **JavaScript (ES6+)** - Interactive features and animations
-- **Font Awesome** - Beautiful icons (loaded via CDN)
+- **Font Awesome** - Icons (CDN)
+- **React + Vite** (optional) - Component-based portfolio in `portfolio-react/`
+- **Node.js + Express** (optional) - Contact API in `server/`
 
 ## Browser Support
 
@@ -106,31 +199,59 @@ Replace the placeholder divs with actual images:
 
 ```
 portfolio/
-│
-├── index.html          # Main HTML file
-├── styles.css          # All styles and animations
-├── script.js           # JavaScript functionality
-└── README.md           # Documentation (this file)
+├── index.html          # Static portfolio (open in browser)
+├── styles.css
+├── script.js
+├── portfolio-react/    # React (Vite) version with APIs
+│   ├── src/
+│   │   ├── api/        # github.js, contact.js, weather.js
+│   │   └── components/
+│   └── ...
+├── server/             # Node.js API (contact form)
+│   ├── index.js
+│   └── package.json
+├── projects/           # Demo apps (TaskMaster, Weather, etc.)
+└── README.md
 ```
 
-## Deployment
+## Who sees what — only you see private information
+
+- **On other people’s devices:** When someone opens your portfolio (e.g. your live site or `index.html`), they only see the **public portfolio** — hero, about, skills, projects, contact form. Nothing else.
+- **On your account / your device:** Only you can see private information:
+  - **Owner-only page:** Open `owner.html` in your browser and enter the password you set there. In `owner.html`, change the password from `change-me` to a password only you know. This page is **not linked** from the portfolio, so visitors never see it. Use it to remind yourself where contact messages go (your backend or email). Keep the URL (`owner.html`) and password private.
+  - **Contact form messages:** When visitors submit the form, messages go to your backend or email — they are never shown on the public site. Only you see them (e.g. in your server logs or inbox).
+
+**Summary:** Visitors only see the portfolio website. All private information (owner page, form submissions) is only visible to you on your account; do not link `owner.html` from the site and do not share its password.
+
+## Privacy & safety — don’t share private or risky things
+
+- **Never put in code or in the repo:** API keys, passwords, secret tokens, or any real credentials. This project does not use any of these; it only uses public APIs (GitHub, Open-Meteo) that don’t need keys.
+- **If you add secrets later:** Use environment variables (e.g. `.env`) and keep `.env` in `.gitignore` (it’s already there). Set secrets only in your deployment platform’s “Environment variables” section, not in the code.
+- **Contact info:** Email, phone, and address in the portfolio are visible to anyone who opens the site. If you don’t want them public, replace them with placeholders (e.g. “your.email@example.com”) before deploying.
+- **Deploy only on trusted platforms:** Use official, well-known free services such as **GitHub Pages**, **Netlify**, **Vercel**, or **Render**. Avoid unknown or untrusted sites that could be risky with your data or repo.
+
+## Deployment (free, trusted platforms only)
 
 ### GitHub Pages (Free)
-1. Create a GitHub repository
-2. Push your code to the repository
-3. Go to Settings → Pages
-4. Select main branch as source
-5. Your site will be live at `https://yourusername.github.io/repository-name`
+1. Create a GitHub repository and push your code.
+2. Go to **Settings → Pages**.
+3. Select the main branch as source.
+4. Your site will be live at `https://yourusername.github.io/repository-name`.
 
 ### Netlify (Free)
-1. Sign up at [netlify.com](https://netlify.com)
-2. Drag and drop your portfolio folder
-3. Your site is live instantly!
+1. Sign up at [netlify.com](https://netlify.com).
+2. Connect your GitHub repo or drag-and-drop your portfolio folder.
+3. Your site is live. Do not paste any API keys or passwords in the dashboard unless you use Netlify’s “Environment variables” for secrets.
 
 ### Vercel (Free)
-1. Sign up at [vercel.com](https://vercel.com)
-2. Import your GitHub repository
-3. Deploy with one click
+1. Sign up at [vercel.com](https://vercel.com).
+2. Import your GitHub repository.
+3. Deploy. Use Vercel’s “Environment variables” for any secrets; never put them in the code.
+
+### Render (Free)
+1. Sign up at [render.com](https://render.com).
+2. Connect your GitHub repo and create a **Static Site**.
+3. Set build command to empty and publish directory to `.` (root). Use Render’s “Environment” only for secrets; never commit them.
 
 ## Tips for Personalization
 

@@ -1,5 +1,8 @@
 # 🚀 Backend Support Documentation
 
+## Privacy & security
+Any passwords, tokens, or credentials shown in this guide are **example values only**. Never use real passwords or API keys in code or in the repo. Use environment variables and your platform’s secure “Environment variables” for any secrets.
+
 ## Overview
 All portfolio projects now include **comprehensive backend support** through an API simulation layer that can be easily replaced with real backend APIs.
 
