@@ -151,14 +151,7 @@ class ThemeManager {
             toggleBtn.addEventListener('click', () => this.toggleTheme());
         }
 
-        // Listen for system theme changes
-        if (window.matchMedia) {
-            window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
-                if (!localStorage.getItem('userTheme')) {
-                    this.applyTheme(e.matches ? 'dark' : 'light');
-                }
-            });
-        }
+        // Do not follow system theme - site always opens in light mode unless user toggled
 
         // Keyboard shortcut: Ctrl/Cmd + Shift + D
         document.addEventListener('keydown', (e) => {
@@ -205,10 +198,8 @@ class ThemeManager {
         if (savedTheme) {
             this.currentTheme = savedTheme;
         } else {
-            // Check system preference
-            if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
-                this.currentTheme = 'dark';
-            }
+            // Always default to light mode on every device (ignore system preference)
+            this.currentTheme = 'light';
         }
     }
 

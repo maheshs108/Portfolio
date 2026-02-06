@@ -32,45 +32,12 @@ http://localhost:3000
 
 ---
 
-**3. Run online (free platform – fixes 404)**  
-Deploy to a free platform so you get a direct link that works (no 404). Choose one:
-
----
-
-### Fix 404 – deploy on a free platform (get a runnable link)
-
-**Option A: GitHub Pages (recommended)**  
-1. Push this project to a GitHub repo (e.g. `maheshs108/Portfolio`).  
-2. In the repo go to **Settings → Pages**.  
-3. Under **Build and deployment**, set **Source** to **GitHub Actions**.  
-4. Save. The workflow in `.github/workflows/deploy-pages.yml` will run on the next push to `main` (or `master`).  
-5. After it finishes, your direct link is:
-   ```
-   https://maheshs108.github.io/Portfolio/
-   ```
-   (Replace `maheshs108` and `Portfolio` with your username and repo name.)
-
-**Option B: Netlify**  
-1. Go to [netlify.com](https://netlify.com) and sign in.  
-2. **Add new site → Import an existing project** → connect your GitHub repo.  
-3. **Build command:** leave empty. **Publish directory:** `.` (root).  
-4. Deploy. Your direct link will be like `https://something.netlify.app`.
-
-**Option C: Vercel**  
-1. Go to [vercel.com](https://vercel.com) and sign in.  
-2. **Add New → Project** → import your GitHub repo.  
-3. **Root Directory:** leave as `.`. Deploy.  
-4. Your direct link will be like `https://your-project.vercel.app`.
-
-**Option D: Render**  
-1. Go to [render.com](https://render.com) and sign in.  
-2. **New → Static Site** → connect your GitHub repo.  
-3. **Build command:** leave empty or `echo 'No build'`. **Publish directory:** `.`.  
-4. Create. Your direct link will be like `https://your-site.onrender.com`.
-
----
-
-After deploying, use the link from that platform to open the portfolio; it should run without 404.
+**3. Run online (Render – free, works on any device)**  
+1. Go to [render.com](https://render.com) and sign in with GitHub.  
+2. **New → Static Site** → connect repo **maheshs108/Portfolio**.  
+3. **Build command:** leave empty (or `echo done`). **Publish directory:** `.`  
+4. **Create Static Site**. Wait 1–2 minutes.  
+5. Open the URL Render gives you (e.g. `https://portfolio-xxxx.onrender.com`) — it works on any device.
 
 ## Features
 
